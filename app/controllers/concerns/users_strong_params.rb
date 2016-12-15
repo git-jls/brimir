@@ -45,6 +45,7 @@ module UsersStrongParams
           :friday,
           :saturday,
           :sunday,
+          :catch_me_up
         ]
     )
 

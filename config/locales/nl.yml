@@ -277,6 +277,10 @@ nl:
         prefer_plain_text: Verstuur en ontvang platte tekst reacties
         include_quote_in_reply: Voeg quote van originele bericht toe aan reactie
 
+      schedule:
+        catch_me_up: Breng mij op de hoogte wat gebeurde na werkuren
+        catch_me_up_description: Ontvang een samengevatte e-mail van gemiste tickets, sinds u weg was.
+
       ticket:
         from: Van e-mailadres
         subject: Onderwerp
@@ -372,6 +376,22 @@ nl:
               U ontvangt deze e-mail als bevestiging dat u ticket is ontvangen met onder het nummer [id] en zo spoedig mogelijk in behandeling zal worden genomen.
               Met vriendelijke groet,
               <br />
+              <br />
+              Webmaster [domain]
+              <br />
+              <br />
+              </div>
+          catch_me_up:
+            template_name: Standaard catch me up
+            message: |
+              <div>
+              Beste [name],
+              <br />
+              <br />
+              Uw ontvangt deze e-mail om u te informeren dat er [count] nieuwe tickets zijn aangemaakt sinds u weg was.
+              <br />
+              <br />
+              With kind regards,
               <br />
               Webmaster [domain]
               <br />

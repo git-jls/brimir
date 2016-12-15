@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :unread_tickets, class_name: 'Ticket'
 
   after_initialize :default_localization
+  after_update :check_schedule_for_catch_me_up
   before_validation :generate_password
 
   accepts_nested_attributes_for :schedule
@@ -71,6 +72,15 @@ class User < ActiveRecord::Base
 
   def name
     super || name_from_email_address
+  end
+
+  def check_schedule_for_catch_me_up
+    kinds = []
+    if schedule.catch_me_up
+      kinds << :catch_me_up unless EmailTemplate
+          .exists?(kind: EmailTemplate.kinds[:catch_me_up])
+    end
+    EmailTemplate.create_default_templates(kinds) unless kinds.empty?
   end
 
   def is_working?

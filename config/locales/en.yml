@@ -281,6 +281,10 @@ en:
         prefer_plain_text: Send and receive plain text replies
         include_quote_in_reply: Include quote of original message in reply
 
+      schedule:
+        catch_me_up: Catch me up if anything happend after hours.
+        catch_me_up_description: Receive an email summarizing evertyhing that happend while you were away.
+
       ticket:
         from: From email address
         subject: Subject
@@ -376,6 +380,22 @@ en:
               <br />
               <br />
               You are receiving this email to let you know that your ticket with the number [id], has been received.
+              <br />
+              <br />
+              With kind regards,
+              <br />
+              Webmaster [domain]
+              <br />
+              <br />
+              </div>
+          catch_me_up:
+            template_name: Default catch me up
+            message: |
+              <div>
+              Dear [name],
+              <br />
+              <br />
+              You are receiving this email to let you know that in your absence [count] new tickets were created.
               <br />
               <br />
               With kind regards,

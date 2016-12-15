@@ -72,7 +72,18 @@
 	transform: translateY(-50%);
 }
 
-.checkbox-helper {
+.catch-me-up-helper{
+	margin-left: 10px !important;
+	margin-bottom: 0px !important;
+}
+
+.catch-me-up-description{
+	font-size: 12px;
+	margin-left: 30px;
+	padding-left: 2px;
+}
+
+.checkbox-helper{
 	overflow: hidden;
 	display: inline-block;
 	span{

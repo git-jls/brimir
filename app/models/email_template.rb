@@ -1,6 +1,6 @@
 class EmailTemplate < ActiveRecord::Base
 
-  enum kind: [:user_welcome, :ticket_received]
+  enum kind: [:user_welcome, :ticket_received, :catch_me_up]
 
   scope :by_kind, -> (k) { where(kind: kinds[k]) }
   scope :active, -> { where.not(draft: true) }

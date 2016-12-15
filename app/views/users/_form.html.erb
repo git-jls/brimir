@@ -75,6 +75,8 @@
                     label: false %>
               </div>
             </div>
+           <%= ff.check_box :catch_me_up, label: t('activerecord.attributes.schedule.catch_me_up'), class: 'catch-me-up-helper', tabindex: tabindex %>
+           <p class="catch-me-up-description"><%= t('activerecord.attributes.schedule.catch_me_up_description') %></p>
             <label class="checkbox-helper">
               <%= ff.check_box :sunday, label: false %>
               <span><%= localize_day_name(0).first(2) %></span>

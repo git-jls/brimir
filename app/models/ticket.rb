@@ -36,6 +36,7 @@ class Ticket < ActiveRecord::Base
   has_many :status_changes, dependent: :destroy
 
   has_and_belongs_to_many :unread_users, class_name: 'User'
+  has_and_belongs_to_many :unnotified_users, class_name: 'User', join_table: 'missed_and_unnotified'
 
   enum status: [:open, :closed, :deleted, :waiting, :merged]
   enum priority: [:unknown, :low, :medium, :high]
@@ -123,8 +124,13 @@ class Ticket < ActiveRecord::Base
     users = User.agents_to_notify.select do |user|
       Ability.new(user).can? :show, self
     end
-    self.notified_user_ids = users.map do |user|
-      user.id if user.is_working?
+    users.map do |user|
+      if user.is_working?
+        self.notified_user_ids = user.id
+      else
+        self.unnotified_users << user
+        # logic active job
+      end
     end
   end
 
