@@ -31,48 +31,51 @@
 
       <div class="medium-6 columns">
 
-        <h5><%= t(:notification_settings) %></h5>
+        <% if @user.agent? %>
 
-        <label>
-          <%= f.radio_button :schedule_enabled, false, label: false %>
-          <%= t('activerecord.attributes.user.schedule_enabled_false') %>
-        </label>
+          <h5><%= t(:notification_settings) %></h5>
 
-        <label>
-          <%= f.radio_button :schedule_enabled, true, label: false %>
-          <%= t('activerecord.attributes.user.schedule_enabled_true') %>
-        </label>
+          <label>
+            <%= f.radio_button :schedule_enabled, false, label: false %>
+            <%= t('activerecord.attributes.user.schedule_enabled_false') %>
+          </label>
 
-        <div data-work-can-wait style="<%= @user.schedule_enabled? ?
-            'display: block;' : 'display: none;' %>">
-          <%= f.fields_for :schedule, build_schedule_for_user do |ff|  %>
-            <div class="row">
-              <div class="small-5 medium-4 large-3 columns">
-                <%
-                  selected = '8:00'
-                  unless ff.object.start.nil?
-                    selected = "#{ff.object.start.hour}:00"
-                  end
-                %>
-                <%= ff.select :start,
-                    options_for_select((0..23).map { |n| "#{n}:00" }, selected),
-                    label: false %>
-              </div>
-              <div class="small-2 medium-2 large-1 column">
-                <label class="inline text-center">
-                  <%= t(:to) %>
-                </label>
-              </div>
-              <div class="small-5 medium-4 large-3 columns end">
-                <%
-                  selected = '18:00'
-                  unless ff.object.end.nil?
-                    selected = "#{ff.object.end.hour}:00"
-                  end
-                %>
-                <%= ff.select :end,
-                    options_for_select((0..23).map { |n| "#{n}:00" }, selected),
-                    label: false %>
+          <label>
+            <%= f.radio_button :schedule_enabled, true, label: false %>
+            <%= t('activerecord.attributes.user.schedule_enabled_true') %>
+          </label>
+
+          <div data-work-can-wait style="<%= @user.schedule_enabled? ?
+              'display: block;' : 'display: none;' %>">
+            <%= f.fields_for :schedule, build_schedule_for_user do |ff|  %>
+              <div class="row">
+                <div class="small-5 medium-4 large-3 columns">
+                  <%
+                    selected = '8:00'
+                    unless ff.object.start.nil?
+                      selected = "#{ff.object.start.hour}:00"
+                    end
+                  %>
+                  <%= ff.select :start,
+                      options_for_select((0..23).map { |n| "#{n}:00" }, selected),
+                      label: false %>
+                </div>
+                <div class="small-2 medium-2 large-1 column">
+                  <label class="inline text-center">
+                    <%= t(:to) %>
+                  </label>
+                </div>
+                <div class="small-5 medium-4 large-3 columns end">
+                  <%
+                    selected = '18:00'
+                    unless ff.object.end.nil?
+                      selected = "#{ff.object.end.hour}:00"
+                    end
+                  %>
+                  <%= ff.select :end,
+                      options_for_select((0..23).map { |n| "#{n}:00" }, selected),
+                      label: false %>
+                </div>
               </div>
             </div>
            <%= ff.check_box :catch_me_up, label: t('activerecord.attributes.schedule.catch_me_up'), class: 'catch-me-up-helper', tabindex: tabindex %>
