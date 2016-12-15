@@ -125,7 +125,7 @@ class Ticket < ApplicationRecord
       Ability.new(user).can? :show, self
     end
     users_to_notify = []
-    users.each do |user|
+    users.map do |user|
       if user.is_working?
         users_to_notify << user.id
       elsif user.is_punctual? && user.schedule.catch_me_up

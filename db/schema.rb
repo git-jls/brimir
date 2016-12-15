@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212081319) do
+ActiveRecord::Schema.define(version: 20161215110823) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(version: 20161212081319) do
     t.string   "color"
   end
 
+  create_table "missed_and_unnotified", id: false, force: :cascade do |t|
+    t.integer "ticket_id", null: false
+    t.integer "user_id",   null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
@@ -116,17 +121,18 @@ ActiveRecord::Schema.define(version: 20161212081319) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.datetime "start"
     t.datetime "end"
-    t.boolean  "monday",     default: true,  null: false
-    t.boolean  "tuesday",    default: true,  null: false
-    t.boolean  "wednesday",  default: true,  null: false
-    t.boolean  "thursday",   default: true,  null: false
-    t.boolean  "friday",     default: true,  null: false
-    t.boolean  "saturday",   default: false, null: false
-    t.boolean  "sunday",     default: false, null: false
+    t.boolean  "monday",      default: true,  null: false
+    t.boolean  "tuesday",     default: true,  null: false
+    t.boolean  "wednesday",   default: true,  null: false
+    t.boolean  "thursday",    default: true,  null: false
+    t.boolean  "friday",      default: true,  null: false
+    t.boolean  "saturday",    default: false, null: false
+    t.boolean  "sunday",      default: false, null: false
+    t.boolean  "catch_me_up", default: false, null: false
   end
 
   create_table "status_changes", force: :cascade do |t|
@@ -152,7 +158,7 @@ ActiveRecord::Schema.define(version: 20161212081319) do
     t.boolean  "notify_user_when_account_is_created",             default: false
     t.boolean  "notify_client_when_ticket_is_created",            default: false
     t.integer  "email_template_id"
-    t.boolean  "ticket_creation_is_open_to_the_world"
+    t.boolean  "ticket_creation_is_open_to_the_world",            default: true
     t.string   "stylesheet_url"
   end
 
