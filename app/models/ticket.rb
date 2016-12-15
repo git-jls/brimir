@@ -131,6 +131,7 @@ class Ticket < ActiveRecord::Base
       elsif user.is_punctual? && user.schedule.catch_me_up
         self.unnotified_users << user
         # logic active job
+        # CheckUnnotifiedUsersAreWorkingJob.perform_later(user)
       end
     end
     self.notified_user_ids = users_to_notify

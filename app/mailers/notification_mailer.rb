@@ -75,6 +75,11 @@ class NotificationMailer < ActionMailer::Base
     end
   end
 
+  def catch_up(user)
+    from = Tenant.current_tenant.from
+    mail(to: user.email, subject: I18n.t(:a_summary_of_what_you_missed), from: from)
+  end
+
   def new_ticket(ticket, user)
     unless user.locale.blank?
       @locale = user.locale
