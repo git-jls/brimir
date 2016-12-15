@@ -33,9 +33,10 @@ class User < ActiveRecord::Base
   has_many :identities
 
   has_and_belongs_to_many :unread_tickets, class_name: 'Ticket'
+  has_and_belongs_to_many :missed_tickets, class_name: 'Ticket', join_table: 'missed_and_unnotified'
 
   after_initialize :default_localization
-  after_update :check_schedule_for_catch_me_up
+  after_update :check_schedule_for_catch_me_up, if: :is_punctual?
   before_validation :generate_password
 
   accepts_nested_attributes_for :schedule
@@ -74,6 +75,10 @@ class User < ActiveRecord::Base
     super || name_from_email_address
   end
 
+  def is_punctual?
+    !schedule.blank?
+  end
+
   def check_schedule_for_catch_me_up
     kinds = []
     if schedule.catch_me_up
@@ -86,7 +91,7 @@ class User < ActiveRecord::Base
   def is_working?
     #sanity checks for default behaviour
     return true unless schedule_enabled # this is the default behaviour
-    return true if schedule.nil? # this is the default behaviour
+    return true unless is_punctual? # this is the default behaviour
     schedule.is_during_work?(Time.now.in_time_zone(self.time_zone))
   end
 

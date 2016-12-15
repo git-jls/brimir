@@ -33,7 +33,7 @@ module EmailTemplateHelper
       when 'catch_me_up'
         prefix = t(:deleting_this_item_will_unset_option)
         postfix = t(
-            'activerecord.attributes.user.schedule.catch_me_up')
+            'activerecord.attributes.schedule.catch_me_up')
         prefix + ' ' + postfix
       end
       return response # return the response

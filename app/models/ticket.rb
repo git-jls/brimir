@@ -124,14 +124,16 @@ class Ticket < ActiveRecord::Base
     users = User.agents_to_notify.select do |user|
       Ability.new(user).can? :show, self
     end
-    users.map do |user|
+    users_to_notify = []
+    users.each do |user|
       if user.is_working?
-        self.notified_user_ids = user.id
-      else
+        users_to_notify << user.id
+      elsif user.is_punctual? && user.schedule.catch_me_up
         self.unnotified_users << user
         # logic active job
       end
     end
+    self.notified_user_ids = users_to_notify
   end
 
   def is_unread?(user)
