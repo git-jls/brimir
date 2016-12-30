@@ -92,7 +92,16 @@ class User < ApplicationRecord
     #sanity checks for default behaviour
     return true unless schedule_enabled # this is the default behaviour
     return true unless is_punctual? # this is the default behaviour
-    schedule.is_during_work?(Time.now.in_time_zone(self.time_zone))
+    schedule.is_during_work?
+  end
+
+  def is_available_in_hours(user_time)
+    if user.is_working?
+      return 0 # available now
+    else
+      # we calculate difference
+      # if user_time
+    end
   end
 
   def name_from_email_address

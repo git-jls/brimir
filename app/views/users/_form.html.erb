@@ -77,39 +77,39 @@
                       label: false %>
                 </div>
               </div>
-            </div>
-           <%= ff.check_box :catch_me_up, label: t('activerecord.attributes.schedule.catch_me_up'), class: 'catch-me-up-helper', tabindex: tabindex %>
-           <p class="catch-me-up-description"><%= t('activerecord.attributes.schedule.catch_me_up_description') %></p>
-            <label class="checkbox-helper">
-              <%= ff.check_box :sunday, label: false %>
-              <span><%= localize_day_name(0).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :monday, label: false %>
-              <span><%= localize_day_name(1).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :tuesday, label: false %>
-              <span><%= localize_day_name(2).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :wednesday, label: false %>
-              <span><%= localize_day_name(3).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :thursday, label: false %>
-              <span><%= localize_day_name(4).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :friday, label: false %>
-              <span><%= localize_day_name(5).first(2) %></span>
-            </label>
-            <label class="checkbox-helper">
-              <%= ff.check_box :saturday, label: false %>
-              <span><%= localize_day_name(6).first(2) %></span>
-            </label>
-          <% end %>
-        </div>
+              <%= ff.check_box :catch_me_up, label: t('activerecord.attributes.schedule.catch_me_up'), class: 'catch-me-up-helper', tabindex: tabindex %>
+              <p class="catch-me-up-description"><%= t('activerecord.attributes.schedule.catch_me_up_description') %></p>
+              <label class="checkbox-helper">
+                <%= ff.check_box :sunday, label: false %>
+                <span><%= localize_day_name(0).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :monday, label: false %>
+                <span><%= localize_day_name(1).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :tuesday, label: false %>
+                <span><%= localize_day_name(2).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :wednesday, label: false %>
+                <span><%= localize_day_name(3).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :thursday, label: false %>
+                <span><%= localize_day_name(4).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :friday, label: false %>
+                <span><%= localize_day_name(5).first(2) %></span>
+              </label>
+              <label class="checkbox-helper">
+                <%= ff.check_box :saturday, label: false %>
+                <span><%= localize_day_name(6).first(2) %></span>
+              </label>
+            <% end %>
+          </div>
+        <% end %>
 
         <h5><%= t(:email_settings) %></h5>
 
